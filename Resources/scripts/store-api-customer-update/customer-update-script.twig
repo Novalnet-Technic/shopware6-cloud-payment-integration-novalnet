@@ -1,0 +1,7 @@
+{% block response %}
+    {% set customerId = hook.query['customerId'] ?? hook.request.customerId %}
+    {% set paymentData = hook.query['paymentData'] ?? hook.request.paymentData %}
+    {% set paymentData = paymentData|replace({'\\': ''}) %}
+    {% do services.writer.upsert('customer', [{ 'id': customerId, 'customFields': {'novalnetFormData' : paymentData} }]) %}
+{% endblock %}
+

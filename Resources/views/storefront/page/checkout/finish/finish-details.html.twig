@@ -1,0 +1,32 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+
+{% block page_checkout_finish_order_payment_method%}
+    {{ parent() }}
+    {% set orderTransaction = page.order.transactions.last %}
+    {% set customFields = page.order.transactions.last.getCustomFields() %}
+    
+    {% if 'novalnetpaymentapp' in orderTransaction.paymentMethod.handlerIdentifier %}
+    
+    <p class="panel--body is--align-center">
+        {% if customFields['checkoutToken'] %}
+            <button class="bz-checkout-btn nn-btn" id="novalnet_button" >Bezahlen mit Barzahlen</button>
+            <style>
+              .nn-btn {
+                display:inline-block !important;
+                float:none !important;
+                margin: 0px !important;
+            }
+            </style>
+        {% endif %}
+    </p>
+    {% if customFields['checkoutToken'] %}
+        <script src="{{ customFields['checkoutJs'] }}" class="bz-checkout" data-token="{{ customFields['checkoutToken'] }}" data-auto-display="true"></script>
+        <style type="text/css">
+            iframe#bz-checkout-modal {
+            position: fixed !important; }
+        </style>
+    {% endif %}
+    
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/Framework/App/Manifest/Schema/manifest-2.0.xsd">
+    <meta>
+        <!-- The name of the app should not change. Otherwise all payment methods are created as duplicates. -->
+        <name>NovalnetPaymentApp</name>
+        <label>Novalnet Payment App</label>
+        <label lang="de-DE">Novalnet Zahlungs-App</label>
+        <description>PCI Compliant, seamless integration with the various types of payment and payment-related services integrated into one unique platform</description>
+        <description lang="de-DE">PCI-konforme, nahtlose Integration der verschiedenen Arten von Zahlungen und zahlungsbezogenen Diensten auf einer einzigen Plattform</description>
+        <author>shopware AG</author>
+        <copyright>(c) by shopware AG</copyright>
+        <version>2.0.0</version>
+        <icon>Resources/config/plugin.png</icon>
+        <license>MIT</license>
+    </meta>
+    
+    <setup>
+        <registrationUrl>https://extapi.novalnet.de/shopware/public/register</registrationUrl>
+    </setup>
+    
+    <webhooks>
+        <webhook name="paymentStateChanged" url="https://extapi.novalnet.de/shopware/public/hooks/order/order-state-changed" event="state_leave.order_transaction.state.open"/>
+        <webhook name="activated" url="https://extapi.novalnet.de/shopware/public/hooks/appActivated" event="app.activated"/>
+    </webhooks>
+    
+    <payments>
+        <payment-method>
+            <identifier>novalnetpaymentapp</identifier>
+            <name>Novalnet Payments</name>
+            <name lang="de-DE">Novalnet-Zahlungen</name>
+            <pay-url>https://extapi.novalnet.de/shopware/public/async/pay</pay-url>
+            <finalize-url>https://extapi.novalnet.de/shopware/public/async/finalize</finalize-url>
+            <icon>Resources/public/static/img/novalneticon.png</icon>
+        </payment-method>
+    </payments>
+    
+    <permissions>
+        <read>system_config</read>
+        <read>customer</read>
+        <read>customer_address</read>
+        <read>language</read>
+        <read>locale</read>
+        <read>theme</read>
+        <read>country</read>
+        <read>country_state</read>
+        <read>currency</read>
+        <read>sales_channel</read>
+        <read>shipping_method</read>
+        <read>salutation</read>
+        <read>payment_method</read>
+        <read>order</read>
+        <read>order_customer</read>
+        <read>order_transaction</read>
+        <read>order_line_item</read>
+        <read>order_address</read>
+        <read>order_delivery</read>
+        <create>state_machine_history</create>
+        <update>customer</update>
+        <update>order_customer</update>
+        <update>system_config</update>
+        <update>mail_template_type</update>
+        <update>order</update>
+		<update>order_transaction</update> 
+        <create>notification</create>
+    </permissions>
+</manifest>
