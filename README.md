@@ -28,7 +28,7 @@ Shopware 6 is the next generation shop system based on advanced hook system. Wit
 ## Compatibility
 Shopware 6 payment app is compatible with below technical capabilities. 
 
-- [x]	Shopware versions 6.4.1.2 - 6.4.20.1
+- [x]	Shopware versions 6.4.1.2 - 6.5.7.4
 - [x]	Linux based OS with Apache 2.2 or 2.4
 - [x]	PHP 7.2.0 or higher
 - [x]	MySQL 5.7 or higher
