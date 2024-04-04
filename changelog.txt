@@ -1,0 +1,15 @@
+*** Changelog ***
+
+= 2.2.0   - 2024.04.04 =
+* Fix 	   - Compatibility for Shopware 6.6 series
+
+= 2.1.0    - 2024.02.20 =
+* New      - Implemented Direct ACH payment
+* Enhanced - Callback has been optimized as per the new testcase 
+
+= 2.0.0    - 2024.01.18 =
+* Fix      - Compatibility for Shopware version 6.5.0.0
+
+= 1.0.0    - 2023.04.27 =
+New release: Payment App built with improved seamless customer experience and brand configurations in the Novalnet Merchant Admin Portal to make it easier to preview and customise the checkout page
+
