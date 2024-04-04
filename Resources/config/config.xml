@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/trunk/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Novalnet API Configuration</title>
+        <title lang="de-DE">Novalnet-API-Konfiguration</title>
+
+        <input-field>
+            <name>signature</name>
+            <label>Product activation key</label>
+            <label lang="de-DE">Produktaktivierungsschlüssel</label>
+            <helpText><![CDATA[ Your product activation key is a unique token for merchant authentication and payment processing. Get your Product activation key from the <a href='https://admin.novalnet.de' rel='noopener' target='_blank' style='text-decoration: underline; font-weight: bold; color:#0080c9;'> Novalnet Admin Portal </a>: Projects > Choose your project > API credentials > API Signature (Product activation key) ]]> </helpText>
+            <helpText lang="de-DE"><![CDATA[ Ihr Produktaktivierungsschlüssel ist ein eindeutiger Token für die Händlerauthentifizierung und Zahlungsabwicklung.Ihr Produktaktivierungsschlüssel ist ein eindeutiges Token für die Händlerauthentifizierung und Zahlungsabwicklung. Ihren Produktaktivierungsschlüssel finden Sie im <a href='https://admin.novalnet.de' rel='noopener' target='_blank' style='text-decoration: underline; font-weight: bold; color:#0080c9;'> Novalnet Admin-Portal </a>: Projekts > Wählen Sie Ihr Projekt > API-Anmeldeinformationen > API-Signatur (Produktaktivierungsschlüssel) ]]></helpText>
+        </input-field>
+        
+        <input-field>
+            <name>accessKey</name>
+            <label>Payment access key</label>
+            <label lang="de-DE">Zahlungs-Zugriffsschlüssel</label>
+            <helpText><![CDATA[ Your secret key used to encrypt the data to avoid user manipulation and fraud. Get your Payment access key from the <a href='https://admin.novalnet.de' rel='noopener' target='_blank' style='text-decoration: underline; font-weight: bold; color:#0080c9;'> Novalnet Admin Portal </a> Projects > Choose your project > API credentials > Payment access key ]]> </helpText>
+            <helpText lang="de-DE"><![CDATA[ Ihr geheimer Schlüssel zur Verschlüsselung der Daten, um Manipulation und Betrug zu vermeiden. Ihren Paymentzugriffsschlüssel finden Sie im <a href='https://admin.novalnet.de' rel='noopener' target='_blank' style='text-decoration: underline; font-weight: bold; color:#0080c9;'> Novalnet Admin-Portal </a>: Projekts > Wählen Sie Ihr Projekt > API-Anmeldeinformationen > Paymentzugriffsschlüssel ]]></helpText>
+        </input-field>
+
+        <input-field>
+            <name>tariff</name>
+            <label>Tariff ID</label>
+            <label lang="de-DE">Tarif-ID</label>
+            <helpText>Enter a Tariff ID to match the preferred tariff plan you created at the Novalnet Admin Portal for this project.</helpText>
+            <helpText lang="de-DE">Geben Sie eine Tarif-ID ein, die mit dem bevorzugten Tarifplan übereinstimmt, den Sie im Novalnet Admin Portal für dieses Projekt erstellt haben</helpText>
+        </input-field>
+        
+        <input-field>
+            <name>callbackUrl</name>
+            <label>Notification / Webhook URL</label>
+            <label lang="de-DE">Benachrichtigungs- / Webhook-URL</label>
+            <helpText><![CDATA[ You must configure the webhook endpoint in your <a href='https://admin.novalnet.de' rel='noopener' target='_blank' style='text-decoration: underline; font-weight: bold; color:#0080c9;'>Novalnet Admin portal</a>. This will allow you to receive notifications about the transaction. ]]> </helpText>
+            <helpText lang="de-DE"><![CDATA[ Sie müssen die folgende Webhook-URL im <a href='https://admin.novalnet.de' rel='noopener' target='_blank' style='text-decoration: underline; font-weight: bold; color:#0080c9;'>Novalnet Admin-Portal</a> hinzufügen. Dadurch können Sie Benachrichtigungen über den Transaktionsstatus erhalten. ]]></helpText>
+            <defaultValue>https://extapi.novalnet.de/shopware/public/novalnet/webhook</defaultValue>
+            <disabled>true</disabled>
+        </input-field>
+        
+        <input-field type="bool">
+            <name>deactivateIp</name>
+            <label>Allow manual testing of the Notification / Webhook URL</label>
+            <label lang="de-DE">Manuelles Testen der Benachrichtigungs / Webhook-URL erlauben</label>
+            <helpText>Enable this to test the Novalnet Notification / Webhook URL manually. Disable this before setting your shop live to block unauthorized calls from external parties</helpText>
+            <helpText lang="de-DE">Aktivieren Sie diese Option, um die Novalnet-Benachrichtigungs-/Webhook-URL manuell zu testen. Deaktivieren Sie die Option, bevor Sie Ihren Shop liveschalten, um unautorisierte Zugriffe von Dritten zu blockieren.</helpText>
+        </input-field>
+        
+        <input-field>
+            <name>mailTo</name>
+            <label>Send e-mail to</label>
+            <label lang="de-DE">E-Mails senden an</label>
+            <helpText>Notification / Webhook URL execution messages will be sent to this e-mail</helpText>
+            <helpText lang="de-DE">E-Mail-Benachrichtigungen werden an diese E-Mail-Adresse gesendet</helpText>
+        </input-field>
+    </card>
+</config>
