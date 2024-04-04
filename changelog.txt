@@ -1,8 +1,5 @@
 *** Changelog ***
 
-= 2.2.0   - 2024.04.04 =
-* Fix 	   - Compatibility for Shopware 6.6 series
-
 = 2.1.0    - 2024.02.20 =
 * New      - Implemented Direct ACH payment
 * Enhanced - Callback has been optimized as per the new testcase 
