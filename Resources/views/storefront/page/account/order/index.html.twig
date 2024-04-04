@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/page/account/order/index.html.twig' %}
+
+
+{% block page_checkout_confirm_header %}
+   {% set customFields = page.order.customFields %}
+   {% if customFields.novalnetResponse is not empty and customFields.novalnetResponse.result.status is not empty and customFields.novalnetResponse.result.status != 'SUCCESS' %}
+		{% if customFields.novalnetResponse.result.status_text is not empty %}
+			{% set errorMessage = customFields.novalnetResponse.result.status_text %}
+		{% else %}
+			{% set errorMessage = customFields.novalnetResponse.status_text %}
+		{% endif %}
+		
+		
+		{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+			type: 'danger',
+			content: errorMessage|trans|sw_sanitize
+		} %}
+   {% else %}
+        {{ parent() }}
+   {% endif %}
+{% endblock %}

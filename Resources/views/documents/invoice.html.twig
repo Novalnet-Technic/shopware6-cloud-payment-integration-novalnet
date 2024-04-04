@@ -1,0 +1,9 @@
+{% sw_extends '@Framework/documents/invoice.html.twig' %}
+
+{% block document_payment_shipping_inner %}
+    {{ parent() }}
+    {% if order.customerComment != '' %}
+		<br><strong>{{ "checkout.customerCommentHeader"|trans|sw_sanitize }}</strong><br>
+		{{ order.customerComment | nl2br }}
+	{% endif %}
+{% endblock %}

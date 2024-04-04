@@ -1,0 +1,58 @@
+{% sw_extends '@Storefront/storefront/component/payment/payment-method.html.twig' %}
+
+{% block component_payment_method_control %}
+    {% if 'NovalnetPaymentApp_novalnetpaymentapp' in payment.handlerIdentifier %}
+        {% if config('NovalnetPaymentApp.config.signature') is not empty and config('NovalnetPaymentApp.config.tariff') is not empty and config('NovalnetPaymentApp.config.accessKey') is not empty %}
+            {% set shopId = config('core.app.shopId') %}
+            {% set authAmount = ( page.cart.price.totalPrice ? page.cart.price.totalPrice : page.order.price.totalPrice ) * 100 %}
+            <input type="hidden" class="nnCurrency" id="nnCurrency" value="{{ context.currency.isoCode }}" />
+            <input type="hidden" class="languageId" id="languageId" value="{{ context.salesChannel.languageId }}" />
+            <input type="hidden" class="shopId" id="shopId" value="{{ shopId.value }}" />
+            <input type="hidden" class="nnAmount" id="nnAmount" value="{{ authAmount|round }}" />
+            <input type="hidden" class="customerId" id="customerId" value="{{ context.customer.id }}" />
+            <input type="hidden" class="customerNo" id="customerNo" value="{{ context.customer.customerNumber }}" />
+            <input type="hidden" class="nnAppPaymentId" id="nnAppPaymentId" value="{{ payment.id }}" />
+            <input type="hidden" id="novalnetapp-paymentdata" form="confirmOrderForm" name="novalnetappFormData[paymentData]" value="" />
+            <style>
+                #novalnetV13Iframe {
+                    border: none;
+                    overflow: hidden;
+                    background:url({{ asset('bundles/novalnetpaymentapp/storefront/assets/img/loader.gif') }}) center center no-repeat;
+                }
+            </style>
+
+            {% set articleData = [] %}
+
+            {% set cart = page.cart ? page.cart : page.order %}
+            
+            {% for lineItem in cart.lineItems %}
+                {% set articleData = articleData|merge([{ label: lineItem.label ~ " (" ~ lineItem.quantity ~ " x " ~ lineItem.price.unitPrice|currency(context.currency.isoCode) ~ ")", type: 'SUBTOTAL', amount: (lineItem.price.totalPrice * 100)|round }]) %}
+            {% endfor %}
+
+            {% for delivery in cart.deliveries %}
+                {% set articleData = articleData|merge([{ label: delivery.shippingMethod.translated.name ~ " (" ~ delivery.shippingCosts.quantity ~ " x " ~ delivery.shippingCosts.unitPrice|currency(context.currency.isoCode) ~ ")", type: 'SUBTOTAL', amount: (delivery.shippingCosts.totalPrice * 100)|round }]) %}
+            {% endfor %}
+                    
+            {% for tax in cart.price.calculatedTaxes %}
+                {% set articleData = articleData|merge([{ label: "checkout.summaryTax"|trans({'%rate%': taxItem.taxRate|trans|sw_sanitize})|sw_sanitize, type: 'SUBTOTAL', amount: (tax.tax * 100)|round }]) %}
+            {% endfor %}
+
+            <p style="display:none;">
+                <input type="radio"
+                       id="paymentMethod{{ payment.id }}"
+                       name="paymentMethodId"
+                       value="{{ payment.id }}"
+                       {% if payment.id is same as(selectedPaymentMethodId) %}checked="checked"{% endif %}
+                       {% if page.isPaymentChangeable is defined and not page.isPaymentChangeable %}
+                           disabled="disabled"
+                       {% endif %}
+                       class="{{ formCheckInputClass }} payment-method-input">
+            </p>
+            <div id="novalnet-app-payment-script" data-lineItems="{{ articleData|json_encode() }}">
+                <iframe id ="novalnetV13Iframe" width="100%" title="Novalnet" allow="payment"></iframe>
+            </div>
+        {% endif %}
+    {% else %}
+        {{ parent()}}
+    {% endif %}
+{% endblock %}
