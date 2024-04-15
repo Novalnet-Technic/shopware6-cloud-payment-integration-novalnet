@@ -80,7 +80,7 @@ Follow the below steps to install the payment app for Shopware 6 in the shop sys
 4. Click **Install** to install the Novalnet Shopware 6 Payment Apps
 
 ## Documentation & Support
-For more information about the Magento 2 Payment Integration by Novalnet, please get in touch with us: <a href="mailto:sales@novalnet.de"> sales@novalnet.de </a> or +49 89 9230683-20<br>
+For more information about the Shopware 6 Payment App Integration by Novalnet, please get in touch with us: <a href="mailto:sales@novalnet.de"> sales@novalnet.de </a> or +49 89 9230683-20<br>
 
 Novalnet AG<br>
 Zahlungsinstitut (ZAG)<br>
